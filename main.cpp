@@ -27,11 +27,10 @@ int main(int argc, char** argv) {
 //    line::bresenham(05,30,95,20, image, yellow);
 //    line::bresenhamInteger(0,50,90,90, image, pink);
 
-    //triangle::draw(Point2D(10, 70), Point2D(100, 700), Point2D(500, 300), image, cyan);
+    triangle::draw(Point2D(10, 70), Point2D(100, 700), Point2D(500, 300), image, cyan);
 
-    objmodel model = objfile::loadfile(const_cast<char *>("res/object.obj"));
-
-    model.draw(image, red);
+//    objmodel model = objfile::loadfile(const_cast<char *>("res/object.obj"));
+//    model.draw(image, red);
 
 
     image.flip_vertically(); // i want to have the origin at the left bottom corner of the image
