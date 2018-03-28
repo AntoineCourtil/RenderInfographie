@@ -27,7 +27,9 @@ int main(int argc, char** argv) {
 //    line::bresenham(05,30,95,20, image, yellow);
 //    line::bresenhamInteger(0,50,90,90, image, pink);
 
-    triangle::draw(Point2D(10, 70), Point2D(100, 700), Point2D(500, 300), image, cyan);
+    triangle triangle1 = triangle(Point3D(10, 70, 0), Point3D(100, 700, 0), Point3D(500, 300, 0));
+    triangle1.draw2D(image, cyan);
+
 
 //    objmodel model = objfile::loadfile(const_cast<char *>("res/object.obj"));
 //    model.draw(image, red);
