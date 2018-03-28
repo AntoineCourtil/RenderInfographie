@@ -31,7 +31,7 @@ int main(int argc, char** argv) {
 //    line::bresenham(05,30,95,20, image, yellow);
 //    line::bresenhamInteger(0,50,90,90, image, pink);
 
-    triangle(Vec2i(10, 70), Vec2i(100, 700), Vec2i(500, 300), image, cyan);
+    triangle(vector(10, 70), vector(100, 700), vector(500, 300), image, cyan);
 
 
 

@@ -129,7 +129,7 @@ void line::bresenhamInteger(int x0, int y0, int x1, int y1, TGAImage &image, TGA
 /**
 * Méthode 6
 **/
-line::line(Vec2i p1, Vec2i p2, TGAImage &image, TGAColor color) {
+line::line(vector p1, vector p2, TGAImage &image, TGAColor color) {
     bool steep = false;
     if (std::abs(p1.x-p2.x)<std::abs(p1.y-p2.y)) {
         std::swap(p1.x, p1.y);
