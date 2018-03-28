@@ -1,11 +1,7 @@
-#include <iostream>
-#include <fstream>
-#include <string.h>
-#include <time.h>
-#include <math.h>
-#include "tgaimage.h"
+#include "image/tgaimage.h"
 #include "geometry/line.h"
 #include "geometry/triangle.h"
+#include "image/objfile.h"
 
 const TGAColor white = TGAColor(255, 255, 255, 255);
 const TGAColor red   = TGAColor(255, 0,   0,   255);
@@ -23,7 +19,7 @@ const TGAColor cyan   = TGAColor(0, 255, 255,   255);
 
 int main(int argc, char** argv) {
     TGAImage image(1000, 1000, TGAImage::RGB);
-    image.set(52, 41, white);
+//    image.set(52, 41, white);
 
 //    line::line1(0,0,50,50, image, red);
 //    line::line2(10,80,80,10, image, green);
@@ -31,8 +27,11 @@ int main(int argc, char** argv) {
 //    line::bresenham(05,30,95,20, image, yellow);
 //    line::bresenhamInteger(0,50,90,90, image, pink);
 
-    triangle(vector(10, 70), vector(100, 700), vector(500, 300), image, cyan);
+    //triangle::draw(Point2D(10, 70), Point2D(100, 700), Point2D(500, 300), image, cyan);
 
+    objmodel model = objfile::loadfile(const_cast<char *>("res/object.obj"));
+
+    model.draw(image, red);
 
 
     image.flip_vertically(); // i want to have the origin at the left bottom corner of the image

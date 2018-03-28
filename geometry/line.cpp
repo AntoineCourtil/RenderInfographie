@@ -4,7 +4,8 @@
 
 #include <cmath>
 #include "line.h"
-#include "../tgaimage.h"
+#include "../image/tgaimage.h"
+#include "Point3D.h"
 
 
 /**
@@ -129,7 +130,42 @@ void line::bresenhamInteger(int x0, int y0, int x1, int y1, TGAImage &image, TGA
 /**
 * Méthode 6
 **/
-line::line(vector p1, vector p2, TGAImage &image, TGAColor color) {
+line::line(Point2D p1, Point2D p2, TGAImage &image, TGAColor color) {
+    bool steep = false;
+    if (std::abs(p1.x-p2.x)<std::abs(p1.y-p2.y)) {
+        std::swap(p1.x, p1.y);
+        std::swap(p2.x, p2.y);
+        steep = true;
+    }
+    if (p1.x>p2.x) {
+        std::swap(p1.x, p2.x);
+        std::swap(p1.y, p2.y);
+    }
+
+    int dx = p2.x - p1.x;
+    int dy = p2.y - p1.y;
+    float derror = std::abs(dy * 2);
+    float error = 0;
+    int y = p1.y;
+
+    for (int x = p1.x; x <= p2.x; x++) {
+        if (steep) {
+            image.set(y, x, color);
+        } else {
+            image.set(x, y, color);
+        }
+        error += derror;
+        if (error > dx) {
+            y += (p2.y > p1.y ? 1 : -1);
+            error -= dx*2.;
+        }
+    }
+}
+
+/**
+* Méthode 6 avec Point3D
+**/
+line::line(Point3D p1, Point3D p2, TGAImage &image, TGAColor color) {
     bool steep = false;
     if (std::abs(p1.x-p2.x)<std::abs(p1.y-p2.y)) {
         std::swap(p1.x, p1.y);

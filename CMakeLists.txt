@@ -3,4 +3,4 @@ project(Infographie)
 
 set(CMAKE_CXX_STANDARD 98)
 
-add_executable(Infographie main.cpp tgaimage.cpp geometry/line.cpp geometry/line.h geometry/triangle.cpp geometry/triangle.h geometry/vector.cpp geometry/vector.h)
+add_executable(Infographie main.cpp image/tgaimage.cpp geometry/line.cpp geometry/line.h geometry/triangle.cpp geometry/triangle.h geometry/Point2D.cpp geometry/Point2D.h image/objfile.cpp image/objfile.h geometry/Point3D.cpp geometry/Point3D.h image/objmodel.cpp image/objmodel.h)

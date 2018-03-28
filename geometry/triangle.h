@@ -7,13 +7,22 @@
 
 
 #include "line.h"
+#include "Point3D.h"
 
 class triangle {
 
-public:
-    triangle(vector t0, vector t1, vector t2, TGAImage &image, TGAColor color);
+private:
+    Point3D t1;
+    Point3D t2;
 
-    void filledTriangle(vector t0, vector t1, vector t2, TGAImage &image, TGAColor color);
+public:
+    triangle(Point3D t0, Point3D t1, Point3D t2);
+    static void draw(Point2D t0, Point2D t1, Point2D t2, TGAImage &image, TGAColor color);
+    void draw2D(TGAImage &image, TGAColor color);
+
+    void draw(TGAImage &image, TGAColor color);
+
+    Point3D t0;
 };
 
 

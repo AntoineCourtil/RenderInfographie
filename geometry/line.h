@@ -7,15 +7,18 @@
 
 
 #include <cassert>
-#include "../tgaimage.h"
-#include "vector.h"
+#include "../image/tgaimage.h"
+#include "Point2D.h"
+#include "Point3D.h"
 
 
 class line {
 
 public:
 
-    line(vector p1, vector p2, TGAImage &image, TGAColor color);
+    line(Point2D p1, Point2D p2, TGAImage &image, TGAColor color);
+
+    line(Point3D p1, Point3D p2, TGAImage &image, TGAColor color);
 
     static void line1(int x0, int y0, int x1, int y1, TGAImage &image, TGAColor color);
 
