@@ -23,6 +23,12 @@ public:
     void draw(TGAImage &image, TGAColor color);
 
     Point3D t0;
+
+    void filled2D(TGAImage &image, TGAColor color);
+
+    Point3D barycentric(Point2D P);
+
+    Point3D crossproduct(Point3D v1, Point3D v2);
 };
 
 

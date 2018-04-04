@@ -251,11 +251,11 @@ TGAColor TGAImage::get(int x, int y) {
     return TGAColor(data+(x+y*width)*bytespp, bytespp);
 }
 
-bool TGAImage::set(int x, int y, TGAColor &c) {
+bool TGAImage::set(double x, double y, TGAColor &c) {
     if (!data || x<0 || y<0 || x>=width || y>=height) {
         return false;
     }
-    memcpy(data+(x+y*width)*bytespp, c.bgra, bytespp);
+    memcpy(data+((int)x+(int)y*width)*bytespp, c.bgra, bytespp);
     return true;
 }
 

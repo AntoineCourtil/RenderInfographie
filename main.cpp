@@ -29,6 +29,7 @@ int main(int argc, char** argv) {
 
     triangle triangle1 = triangle(Point3D(10, 70, 0), Point3D(100, 700, 0), Point3D(500, 300, 0));
     triangle1.draw2D(image, cyan);
+    triangle1.filled2D(image, red);
 
 
 //    objmodel model = objfile::loadfile(const_cast<char *>("res/object.obj"));

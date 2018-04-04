@@ -8,10 +8,12 @@
 
 class Point2D {
 public:
-    int x;
-    int y;
+    Point2D();
 
-    Point2D(int coordX, int coordY);
+    double x;
+    double y;
+
+    Point2D(double coordX, double coordY);
 
 
 };
