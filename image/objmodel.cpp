@@ -56,7 +56,7 @@ void objmodel::fillWithLight(TGAImage &image) {
 
         if (intensity > 0) {
             faces.at(i).filled2D(image, TGAColor(intensity * 255, intensity * 255, intensity * 255, 255));
-//            faces.at(i).draw2D(image, TGAColor(255,0,0,255));
+            faces.at(i).draw2D(image, TGAColor(255,0,0,255));
             std::cout << "Draw face " << i << " with itensity : " << intensity << std::endl;
         }
     }
