@@ -13,9 +13,9 @@ triangle::triangle(Point3D t0_, Point3D t1_, Point3D t2_) {
     t1 = t1_;
     t2 = t2_;
 
-    if (t0.y > t1.y) std::swap(t0, t1);
-    if (t0.y > t2.y) std::swap(t0, t2);
-    if (t1.y > t2.y) std::swap(t1, t2);
+//    if (t0.y > t1.y) std::swap(t0, t1);
+//    if (t0.y > t2.y) std::swap(t0, t2);
+//    if (t1.y > t2.y) std::swap(t1, t2);
 }
 
 void triangle::draw(Point2D t0, Point2D t1, Point2D t2, TGAImage &image, TGAColor color) {
@@ -38,6 +38,10 @@ void triangle::draw2D(TGAImage &image, TGAColor color) {
 }
 
 void triangle::filled2D(TGAImage &image, TGAColor color) {
+
+    if (t0.y > t1.y) std::swap(t0, t1);
+    if (t0.y > t2.y) std::swap(t0, t2);
+    if (t1.y > t2.y) std::swap(t1, t2);
 
     Point2D bboxmin(image.get_width() - 1, image.get_height() - 1);
     Point2D bboxmax(0, 0);
@@ -66,13 +70,18 @@ void triangle::filled2D(TGAImage &image, TGAColor color) {
 
     Point2D P;
 
+    bool isPrinted = false;
+
     for (P.x = bboxmin.x; P.x <= bboxmax.x; P.x++) {
         for (P.y = bboxmin.y; P.y <= bboxmax.y; P.y++) {
             Point3D bc_screen = barycentric(P);
             if (bc_screen.x < 0 || bc_screen.y < 0 || bc_screen.z < 0) continue;
             image.set(P.x, P.y, color);
+            isPrinted = true;
         }
     }
+
+    if(!isPrinted) std::cout << "NOT PRINTED " << std::endl;
 
 }
 
@@ -101,5 +110,19 @@ Point3D triangle::crossproduct(Point3D v1,Point3D v2) {
 
     return cross_p;
 
+}
+
+
+Point3D triangle::normale(){
+    Point3D normale = Point3D();
+
+    Point3D u = Point3D(t1.x-t0.x, t1.y-t0.y, t1.z-t0.z);
+    Point3D v = Point3D(t2.x-t0.x, t2.y-t0.y, t2.z-t0.z);
+
+//    normale.x = (t1.y-t0.y) * (t2.z-t0.z) - (t1.z -t0.z) * (t2.y - t0.y);
+//    normale.y = (t1.z-t0.z) * (t2.x-t0.x) - (t1.x -t0.x) * (t2.z - t0.z);
+//    normale.z = (t1.x-t0.x) * (t2.y-t0.y) - (t1.y -t0.y) * (t2.x - t0.x);
+
+    return crossproduct(u,v);
 }
 

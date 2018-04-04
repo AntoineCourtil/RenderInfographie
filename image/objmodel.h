@@ -25,6 +25,8 @@ public:
     void draw(TGAImage &image, TGAColor color);
 
     void fill(TGAImage &image);
+
+    void fillWithLight(TGAImage &image);
 };
 
 

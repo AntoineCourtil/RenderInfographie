@@ -32,8 +32,8 @@ int main(int argc, char** argv) {
 //    triangle1.filled2D(image, red);
 
 
-    objmodel model = objfile::loadfile(const_cast<char *>("res/object.obj"));
-    model.fill(image);
+    objmodel model = objfile::loadfile(const_cast<char *>("res/african_head.obj"));
+    model.fillWithLight(image);
 
 
     image.flip_vertically(); // i want to have the origin at the left bottom corner of the image
