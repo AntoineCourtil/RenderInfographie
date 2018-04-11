@@ -48,7 +48,11 @@ int main(int argc, char** argv) {
 
     objmodel model = objfile::loadfile(const_cast<char *>("res/african_head.obj"));
 
-    model.fillWithLight(image, zbuffer);
+    TGAImage texture = TGAImage();
+    texture.read_tga_file("res/african_head_diffuse.tga");
+    texture.flip_vertically();
+
+    model.fillWithLight(image, zbuffer, texture);
     image.flip_vertically(); // i want to have the origin at the left bottom corner of the image
     image.write_tga_file("output.tga");
 

@@ -42,8 +42,14 @@ objmodel objfile::loadfile(char *fileName) {
             t1_ = t1.substr(0, t1.find("/"));
             t2_ = t2.substr(0, t2.find("/"));
 
+            double textureX = std::atof(t0.substr(1, t0.find("/")).c_str());
+            double textureY = std::atof(t1.substr(1, t0.find("/")).c_str());
+            double textureZ = std::atof(t2.substr(1, t0.find("/")).c_str());
+
+            Point3D texture = Point3D(textureX, textureY, textureZ);
+
 //            faces.push_back(triangle(data.at(std::atoi(t0.c_str())-1), data.at(std::atoi(t1.c_str())-1), data.at(std::atoi(t2.c_str())-1)));
-            faces.push_back(triangle(data.at(std::atoi(t0_.c_str())-1), data.at(std::atoi(t1_.c_str())-1), data.at(std::atoi(t2_.c_str())-1)));
+            faces.push_back(triangle(data.at(std::atoi(t0_.c_str())-1), data.at(std::atoi(t1_.c_str())-1), data.at(std::atoi(t2_.c_str())-1), texture));
 
 //            cout << data.at(std::atoi(t0.c_str())-1).x << " " << data.at(std::atoi(t0.c_str())-1).y << " " << data.at(std::atoi(t0.c_str())-1).z << " " << endl;
 //            cout << data.at(std::atoi(t1.c_str())-1).x << " " << data.at(std::atoi(t1.c_str())-1).y << " " << data.at(std::atoi(t1.c_str())-1).z << " " << endl;

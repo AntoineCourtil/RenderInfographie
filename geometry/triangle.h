@@ -15,13 +15,15 @@ private:
     Point3D t1;
 
 public:
-    triangle(Point3D t0, Point3D t1, Point3D t2);
+    triangle(Point3D t0, Point3D t1, Point3D t2, Point3D texture);
 
     static void draw(Point2D t0, Point2D t1, Point2D t2, TGAImage &image, TGAColor color);
 
     void draw2D(TGAImage &image, TGAColor color);
 
     Point3D t0;
+
+    Point3D texture;
 
     void filled2D(TGAImage &image, TGAColor color);
 
@@ -33,7 +35,7 @@ public:
 
     Point3D normale();
 
-    void filled2DZBuffer(TGAImage &image, TGAColor color, double *zbuffer);
+    void filled2DZBuffer(TGAImage &image, TGAImage &texture, double *zbuffer, double intensity);
 };
 
 

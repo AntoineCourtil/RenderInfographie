@@ -7,11 +7,13 @@
 #include <cmath>
 
 
-triangle::triangle(Point3D t0_, Point3D t1_, Point3D t2_) {
+triangle::triangle(Point3D t0_, Point3D t1_, Point3D t2_, Point3D texture_) {
 
     t0 = t0_;
     t1 = t1_;
     t2 = t2_;
+
+    texture = texture_;
 
 //    if (t0.y > t1.y) std::swap(t0, t1);
 //    if (t0.y > t2.y) std::swap(t0, t2);
@@ -85,7 +87,7 @@ void triangle::filled2D(TGAImage &image, TGAColor color) {
 
 }
 
-void triangle::filled2DZBuffer(TGAImage &image, TGAColor color, double zbuffer[]) {
+void triangle::filled2DZBuffer(TGAImage &image, TGAImage &texture_, double zbuffer[], double intensity) {
 
     if (t0.y > t1.y) std::swap(t0, t1);
     if (t0.y > t2.y) std::swap(t0, t2);
@@ -139,6 +141,13 @@ void triangle::filled2DZBuffer(TGAImage &image, TGAColor color, double zbuffer[]
             if(index >= image.get_width()*image.get_height() || index < 0) std::cout << index << std::endl;
 
             if(zbuffer[index] < P.z) {
+
+                int textureX = texture.x*texture_.get_width() + x;
+                int textureY = texture.y*texture_.get_height() + y;
+
+                TGAColor color = texture_.get(textureX,textureY);
+                color.operator*(intensity);
+
                 image.set(x, y, color);
                 zbuffer[index] = P.z;
                 isPrinted = true;

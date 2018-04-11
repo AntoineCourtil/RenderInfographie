@@ -33,7 +33,7 @@ void objmodel::fill(TGAImage &image) {
 
 }
 
-void objmodel::fillWithLight(TGAImage &image, double zbuffer[]) {
+void objmodel::fillWithLight(TGAImage &image, double zbuffer[], TGAImage &texture) {
 
     Point3D light = Point3D(0,0,1);
 
@@ -57,7 +57,7 @@ void objmodel::fillWithLight(TGAImage &image, double zbuffer[]) {
 
         if (intensity > 0) {
 //            faces.at(i).filled2D(image, TGAColor(intensity * 255, intensity * 255, intensity * 255, 255));
-            faces.at(i).filled2DZBuffer(image, TGAColor(intensity * 255, intensity * 255, intensity * 255, 255), zbuffer);
+            faces.at(i).filled2DZBuffer(image, texture, zbuffer, intensity);
 //            faces.at(i).draw2D(image, TGAColor(255,0,0,255));
 //            std::cout << "Draw face " << i << " with itensity : " << intensity << std::endl;
         }
