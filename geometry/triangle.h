@@ -32,6 +32,8 @@ public:
     Point3D t2;
 
     Point3D normale();
+
+    void filled2DZBuffer(TGAImage &image, TGAColor color, double *zbuffer);
 };
 
 
