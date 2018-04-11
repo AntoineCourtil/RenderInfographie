@@ -85,6 +85,63 @@ void triangle::filled2D(TGAImage &image, TGAColor color) {
 
 }
 
+void triangle::filled2DZBuffer(TGAImage &image, TGAColor color, double zbuffer[]) {
+
+    if (t0.y > t1.y) std::swap(t0, t1);
+    if (t0.y > t2.y) std::swap(t0, t2);
+    if (t1.y > t2.y) std::swap(t1, t2);
+
+    Point2D bboxmin(image.get_width() - 1, image.get_height() - 1);
+    Point2D bboxmax(0, 0);
+    Point2D clamp(image.get_width() - 1, image.get_height() - 1);
+
+    // Calcul de la bbox min
+
+    bboxmin.x = std::max((const double &)0, std::min(bboxmin.x, t0.x));
+    bboxmin.x = std::max((const double &)0, std::min(bboxmin.x, t1.x));
+    bboxmin.x = std::max((const double &)0, std::min(bboxmin.x, t2.x));
+
+    bboxmin.y = std::max((const double &)0, std::min(bboxmin.y, t0.y));
+    bboxmin.y = std::max((const double &)0, std::min(bboxmin.y, t1.y));
+    bboxmin.y = std::max((const double &)0, std::min(bboxmin.y, t2.y));
+
+    // Calcul de la bbox min
+
+    bboxmax.x = std::max(clamp.x, std::max(bboxmax.x, t0.x));
+    bboxmax.x = std::max(clamp.x, std::max(bboxmax.x, t1.x));
+    bboxmax.x = std::max(clamp.x, std::max(bboxmax.x, t2.x));
+
+    bboxmax.y = std::max(clamp.y, std::max(bboxmax.x, t0.y));
+    bboxmax.y = std::max(clamp.y, std::max(bboxmax.x, t1.y));
+    bboxmax.y = std::max(clamp.y, std::max(bboxmax.x, t2.y));
+
+
+    Point3D P;
+
+    bool isPrinted = false;
+
+    for (P.x = bboxmin.x; P.x <= bboxmax.x; P.x++) {
+        for (P.y = bboxmin.y; P.y <= bboxmax.y; P.y++) {
+            Point3D bc_screen = barycentric(Point2D(P.x, P.y));
+            if (bc_screen.x < 0 || bc_screen.y < 0 || bc_screen.z < 0) continue;
+
+            P.z = 0;
+            P.z += t0.z * bc_screen.x;
+            P.z += t1.z * bc_screen.y;
+            P.z += t2.z * bc_screen.z;
+
+            if(zbuffer[int(P.x + P.y * image.get_width())] < P.z) {
+                image.set(P.x, P.y, color);
+                zbuffer[int(P.x + P.y * image.get_width())] = P.z;
+                isPrinted = true;
+            }
+        }
+    }
+
+//    if(!isPrinted) std::cout << "NOT PRINTED " << std::endl;
+
+}
+
 Point3D triangle::barycentric(Point2D P) {
     Point3D u = crossproduct(Point3D(t2.x-t0.x, t1.x-t0.x, t0.x-P.x), Point3D(t2.y-t0.y, t1.y-t0.y, t0.y-P.y));
 

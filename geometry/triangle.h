@@ -25,6 +25,8 @@ public:
 
     void filled2D(TGAImage &image, TGAColor color);
 
+    void filled2DZBuffer(TGAImage &image, TGAColor color, double zbuffer[]);
+
     Point3D barycentric(Point2D P);
 
     Point3D crossproduct(Point3D v1, Point3D v2);

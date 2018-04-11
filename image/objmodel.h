@@ -27,6 +27,8 @@ public:
     void fill(TGAImage &image);
 
     void fillWithLight(TGAImage &image);
+
+    void fillWithLight(TGAImage &image, double zbuffer[]);
 };
 
 
