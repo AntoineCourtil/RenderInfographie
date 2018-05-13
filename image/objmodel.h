@@ -17,9 +17,10 @@ private:
 
     std::vector<Point3D> points;
     std::vector<triangle> faces;
+    std::vector<Point3D> textures;
 
 public:
-    objmodel(std::vector<Point3D> points_, std::vector<triangle> faces_);
+    objmodel(std::vector<Point3D> points_, std::vector<triangle> faces_, std::vector<Point3D> textures_);
 
 
     void draw(TGAImage &image, TGAColor color);

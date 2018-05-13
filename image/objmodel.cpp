@@ -7,9 +7,10 @@
 #include <cmath>
 #include "objmodel.h"
 
-objmodel::objmodel(std::vector<Point3D> points_, std::vector<triangle> faces_){
+objmodel::objmodel(std::vector<Point3D> points_, std::vector<triangle> faces_, std::vector<Point3D> textures_){
     points = points_;
     faces = faces_;
+    textures = textures_;
 }
 
 objmodel::objmodel(){ }
@@ -37,10 +38,13 @@ void objmodel::fillWithLight(TGAImage &image, double zbuffer[], TGAImage &textur
 
     Point3D light = Point3D(0,0,1);
 
-    std::cout << "faces size : " << faces.size() << std::endl;
+    std::cout << std::endl << std::endl << "number of faces for the model : " << faces.size() << std::endl;
 
+    std::cout << std::endl << "Progress..." << std::endl;
 
     for(int i=0; i<faces.size(); i++){
+
+        if(i%100 == 0 && i > 0) std::cerr << "=";
 
         Point3D normale = faces.at(i).normale();
 
@@ -57,7 +61,8 @@ void objmodel::fillWithLight(TGAImage &image, double zbuffer[], TGAImage &textur
 
         if (intensity > 0) {
 //            faces.at(i).filled2D(image, TGAColor(intensity * 255, intensity * 255, intensity * 255, 255));
-            faces.at(i).filled2DZBuffer(image, texture, zbuffer, intensity);
+//            std::cout << intensity << std::endl;
+            faces.at(i).filled2DZBuffer(image, texture, zbuffer, intensity, textures);
 //            faces.at(i).draw2D(image, TGAColor(255,0,0,255));
 //            std::cout << "Draw face " << i << " with itensity : " << intensity << std::endl;
         }

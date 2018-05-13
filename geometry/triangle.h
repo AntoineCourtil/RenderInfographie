@@ -6,6 +6,7 @@
 #define INFOGRAPHIE_TRIANGLE_H
 
 
+#include <vector>
 #include "line.h"
 #include "Point3D.h"
 
@@ -23,7 +24,7 @@ public:
 
     Point3D t0;
 
-    Point3D texture;
+    Point3D texturesCoord;
 
     void filled2D(TGAImage &image, TGAColor color);
 
@@ -35,7 +36,7 @@ public:
 
     Point3D normale();
 
-    void filled2DZBuffer(TGAImage &image, TGAImage &texture, double *zbuffer, double intensity);
+    void filled2DZBuffer(TGAImage &image, TGAImage &texture, double *zbuffer, double intensity, std::vector<Point3D> textures_);
 };
 
 

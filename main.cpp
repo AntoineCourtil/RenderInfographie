@@ -43,18 +43,30 @@ int main(int argc, char** argv) {
         zbuffer[i] = std::numeric_limits<double>::min();
     }
 
-    std::cout << std::numeric_limits<int>::min() << std::endl;
+//    std::cout << std::numeric_limits<int>::min() << std::endl;
+    std::cout << std::endl << std::endl;
 
 
-    objmodel model = objfile::loadfile(const_cast<char *>("res/african_head.obj"));
+    const char *fileName = "res/african_head.obj";
+    const char *textureName = "res/african_head_diffuse.tga";
+    const char *resultFile = "outpu.tga";
+
+    std::cout << "fileName : " << fileName << std::endl;
+
+
+    objmodel model = objfile::loadfile(const_cast<char *>(fileName));
 
     TGAImage texture = TGAImage();
-    texture.read_tga_file("res/african_head_diffuse.tga");
+    texture.read_tga_file(textureName);
     texture.flip_vertically();
+
+    std::cout << std::endl << "textureName : " << fileName << " readed."<< std::endl;
 
     model.fillWithLight(image, zbuffer, texture);
     image.flip_vertically(); // i want to have the origin at the left bottom corner of the image
-    image.write_tga_file("output.tga");
+    image.write_tga_file(resultFile);
 
+
+    std::cout << std::endl << std::endl << std::endl << "resultFile : " << fileName << " written."<< std::endl;
     return 0;
 }
