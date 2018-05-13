@@ -1,0 +1,30 @@
+Projet Infographie
+
+Antoine Courtil
+M1 Informatique
+2017 - 2018
+
+
+Travail effectué :
+
+# Point2D : classe contenant deux attributs de type double
+# Point3D : classe contenant trois attributs de type double
+# Système de lecture de fichier .obj : objfile.cpp objfile.h
+# Enregistrement des données lues d'un fichier .obj pour pouvoir les utiliser par la suite : objmodel.cpp objmodel.h
+# Rastérisation : line.cpp line.h triangle.cpp triangle.h
+# Prise en considération les différents plans : triangle::filled2DZBuffer()
+# Prise en considération de l'éclairage et la lumière ambiante : objmodel::fillWithLight()
+# Prise en considération d'une texture : triangle::filled2DZBuffer()
+
+
+Utilisation :
+
+Pour changer de model .obj à charger, il suffit de changer la variable "fileName" (ligne 50) du fichier main.cpp en précisant le chemin du nouveau model.
+Il est en de même pour la texture, "textureName" ligne 51.
+Le fichier de sortie se nomme "output.tga".
+
+
+Remarques :
+
+Etant absent à cause de mon travail lors des deux semaines de vacances (justificatif envoyés précédemmentpar mail),
+je n'ai pu me consacrer à avancer et donc terminer le projet.
